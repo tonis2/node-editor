@@ -1,7 +1,8 @@
 name: node_editor
-description: Node editor for flutter
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+description: A Flutter library for creating visual node-based editors with draggable, connectable nodes.
+repository: https://github.com/tonis2/node-editor
+homepage: https://github.com/tonis2/node-editor
 
 environment:
   sdk: ^3.10.4
