@@ -1,4 +1,4 @@
-import 'package:node_editor/index.dart';
+import 'package:easy_nodes/index.dart';
 import 'package:test/test.dart';
 
 void main() {

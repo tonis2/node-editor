@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:node_editor/index.dart';
+import 'package:easy_nodes/index.dart';
 import 'package:flutter/services.dart' show rootBundle, LogicalKeyboardKey;
 import 'node.dart';
 

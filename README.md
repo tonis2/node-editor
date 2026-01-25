@@ -1,4 +1,4 @@
-# Node Editor
+# Easy nodes
 
 A Flutter library for creating visual node-based editors with draggable, connectable nodes on an interactive canvas.
 
@@ -14,14 +14,8 @@ A Flutter library for creating visual node-based editors with draggable, connect
 
 ## Installation
 
-Add to your `pubspec.yaml`:
-
-```yaml
-dependencies:
-  node_editor:
-    git:
-      url: git@github.com:tonis2/node-editor.git
-      ref: main
+```sh
+flutter pub add easy_nodes
 ```
 
 ## Quick Start
