@@ -118,6 +118,7 @@ abstract class Node extends StatelessWidget {
   final List<Input> inputs;
   final List<Output> outputs;
   final Color color;
+  final Color backgroundColor;
   final String uuid;
   final Size size;
   Offset offset;
@@ -133,6 +134,7 @@ abstract class Node extends StatelessWidget {
     required this.outputs,
     this.offset = const Offset(0, 0),
     this.color = const Color.fromRGBO(128, 186, 215, 0.5),
+    this.backgroundColor = Colors.white70,
     this.size = const Size(100, 100),
     String? uuid,
     super.key,

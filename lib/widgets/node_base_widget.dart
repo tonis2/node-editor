@@ -14,8 +14,6 @@ class NodeBaseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return GestureDetector(
       onSecondaryTapDown: (details) {
         NodeEditorContextMenus.showNodeMenu(
@@ -28,7 +26,7 @@ class NodeBaseWidget extends StatelessWidget {
       child: Container(
         width: node.size.width,
         height: NodeLayout.totalNodeHeight(node),
-        decoration: BoxDecoration(color: theme.colorScheme.secondary, borderRadius: BorderRadius.circular(10)),
+        decoration: BoxDecoration(color: node.backgroundColor, borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
             _NodeHeader(node: node),

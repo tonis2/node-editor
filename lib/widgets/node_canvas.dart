@@ -13,8 +13,17 @@ class NodeCanvas extends StatefulWidget {
   final NodeEditorController controller;
   final Size size;
   final double zoom;
+  final Color backgroundColor;
+  final Color lineColor;
 
-  const NodeCanvas({required this.controller, this.size = const Size(3000, 3000), this.zoom = 1.0, super.key});
+  const NodeCanvas({
+    required this.controller,
+    this.size = const Size(3000, 3000),
+    this.zoom = 1.0,
+    this.backgroundColor = Colors.white,
+    this.lineColor = const Color(0x15000000),
+    super.key,
+  });
 
   // static Widget build({
   //   required NodeEditorController controller,
@@ -185,8 +194,8 @@ class _NodeCanvasState extends State<NodeCanvas> {
               child: ShaderGrid(
                 size: Size(constraints.maxWidth, constraints.maxHeight),
                 gridSize: 50,
-                lineColor: const Color(0x15000000),
-                backgroundColor: const Color(0xFFFAFAFA),
+                lineColor: widget.lineColor,
+                backgroundColor: widget.backgroundColor,
               ),
             ),
             // Interactive canvas on top
