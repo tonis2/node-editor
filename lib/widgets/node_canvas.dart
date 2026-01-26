@@ -15,6 +15,7 @@ class NodeCanvas extends StatefulWidget {
   final double zoom;
   final Color backgroundColor;
   final Color lineColor;
+  final Color connectionColor;
 
   const NodeCanvas({
     required this.controller,
@@ -22,6 +23,7 @@ class NodeCanvas extends StatefulWidget {
     this.zoom = 1.0,
     this.backgroundColor = Colors.white,
     this.lineColor = const Color(0x15000000),
+    this.connectionColor = Colors.white,
     super.key,
   });
 
@@ -222,7 +224,7 @@ class _NodeCanvasState extends State<NodeCanvas> {
                         clipBehavior: Clip.none,
                         children: [
                           CustomPaint(
-                            painter: LinePainter(controller: widget.controller),
+                            painter: LinePainter(controller: widget.controller, lineColor: widget.connectionColor),
                             size: canvasSize,
                           ),
                           ...widget.controller.nodes.entries.map((item) {

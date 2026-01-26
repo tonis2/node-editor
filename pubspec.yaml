@@ -1,5 +1,5 @@
 name: easy_nodes
-version: 1.0.2
+version: 1.0.4
 description: A Flutter library for creating visual node-based editors with draggable, connectable nodes.
 repository: https://github.com/tonis2/node-editor
 homepage: https://github.com/tonis2/node-editor

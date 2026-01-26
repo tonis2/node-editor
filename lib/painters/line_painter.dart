@@ -5,13 +5,9 @@ import '../controller/node_editor_controller.dart';
 /// Custom painter for drawing connection lines between nodes
 class LinePainter extends CustomPainter {
   final NodeEditorController controller;
+  final Color lineColor;
 
-  LinePainter({required this.controller});
-
-  final Paint _linePaint = Paint()
-    ..color = Colors.black
-    ..strokeWidth = 2.0
-    ..style = PaintingStyle.stroke;
+  LinePainter({required this.controller, this.lineColor = Colors.white});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -27,6 +23,11 @@ class LinePainter extends CustomPainter {
   }
 
   void _drawBezierCurve(Canvas canvas, Offset start, Offset end) {
+    final Paint linePaint = Paint()
+      ..color = lineColor
+      ..strokeWidth = 2.0
+      ..style = PaintingStyle.stroke;
+
     final path = Path();
     path.moveTo(start.dx, start.dy);
 
@@ -42,7 +43,7 @@ class LinePainter extends CustomPainter {
 
     path.cubicTo(controlPoint1.dx, controlPoint1.dy, controlPoint2.dx, controlPoint2.dy, end.dx, end.dy);
 
-    canvas.drawPath(path, _linePaint);
+    canvas.drawPath(path, linePaint);
   }
 
   @override

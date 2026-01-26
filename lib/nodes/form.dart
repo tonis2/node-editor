@@ -201,6 +201,7 @@ class FormNode extends Node {
 
   FormNode({
     super.color = Colors.orangeAccent,
+    super.backgroundColor,
     super.label = "Default form",
     super.size = const Size(500, 500),
     super.inputs = const [],
