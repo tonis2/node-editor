@@ -84,7 +84,43 @@ class NodeEditorController extends ChangeNotifier {
       }
     }
 
+    _normalizeOffsets();
     notifyListeners();
+  }
+
+  /// Margin (canvas px) kept between the top-left-most node and the origin after
+  /// a load, so the node sits comfortably inside the hit-testable canvas.
+  static const double _loadMargin = 40.0;
+
+  /// Shift every node (and connection endpoint) so none sit at a negative /
+  /// off-canvas coordinate.
+  ///
+  /// The canvas Stack only grows for positive overflow and Flutter won't
+  /// hit-test a child positioned outside the Stack's bounds — so a node loaded
+  /// at a negative offset renders and can still be dragged (drag targets are
+  /// found mathematically) but never receives taps. A uniform translation
+  /// preserves the layout; connection lines cache absolute endpoints, so those
+  /// are shifted by the same delta.
+  void _normalizeOffsets() {
+    if (nodes.isEmpty) return;
+
+    double minX = double.infinity, minY = double.infinity;
+    for (final node in nodes.values) {
+      if (node.offset.dx < minX) minX = node.offset.dx;
+      if (node.offset.dy < minY) minY = node.offset.dy;
+    }
+    final double shiftX = minX < _loadMargin ? _loadMargin - minX : 0;
+    final double shiftY = minY < _loadMargin ? _loadMargin - minY : 0;
+    if (shiftX == 0 && shiftY == 0) return;
+
+    final delta = Offset(shiftX, shiftY);
+    for (final node in nodes.values) {
+      node.offset += delta;
+    }
+    for (final conn in connections) {
+      conn.start += delta;
+      conn.end += delta;
+    }
   }
 
   /// Clear all nodes and connections
