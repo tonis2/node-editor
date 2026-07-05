@@ -15,18 +15,26 @@ class NodeLayout {
   /// Spacing between connectors
   static const double connectorSpacing = 15;
 
+  /// Vertical center of the connector at [index], measured from the node's top.
+  ///
+  /// Must mirror the real widget layout in [NodeBaseWidget]/[ConnectorRow]:
+  /// header, then a [contentOffset] top margin, then a [Column] of connector
+  /// circles ([connectorSize] tall) separated by [connectorSpacing]. Using
+  /// [headerHeight] as the per-index step (the previous approach) only matched
+  /// for the first two ports and drifted for every port after that, so moving a
+  /// node snapped its connections to the wrong spots.
+  static double _connectorCenterY(int index) {
+    return headerHeight + contentOffset + connectorSize / 2 + index * (connectorSize + connectorSpacing);
+  }
+
   /// Calculates the position for an output connector on a node
   static Offset outputConnectorPosition(Node node, int index) {
-    final double indexOffset = index > 0
-        ? (index * headerHeight) + headerHeight + contentOffset - 5
-        : headerHeight + contentOffset + 10;
-    return node.offset + Offset(node.size.width, indexOffset);
+    return node.offset + Offset(node.size.width, _connectorCenterY(index));
   }
 
   /// Calculates the position for an input connector on a node
   static Offset inputConnectorPosition(Node node, int index) {
-    final double indexOffset = index > 0 ? index * headerHeight - 5 : contentOffset / 2;
-    return node.offset + Offset(0, headerHeight + contentOffset + indexOffset);
+    return node.offset + Offset(0, _connectorCenterY(index));
   }
 
   /// Calculates the total height of a node including header and content offset
